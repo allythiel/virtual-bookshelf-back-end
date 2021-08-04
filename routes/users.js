@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     }
  });
 
+ 
  ////////////////////////GET COMMENTS BY BOOK ID ////////////////////////
  router.get('/:bookId', async (req, res) => {
     try {
@@ -26,6 +27,26 @@ router.get('/', async (req, res) => {
     }
  });
 
+
+ ////////////////////////POST NEW COMMENT ////////////////////////
+ router.post('/', async (req, res) => {
+    try {
+       // VALIDATION REQUIRED
+       const { error } = validateComment(req.body);
+       if (error)
+          return res.status(400).send(error);
+ 
+       const comment = new Comment({
+          text: req.body.text,
+          author: req.body.author,
+          bookId: req.body.bookId,
+       });
+       await comment.save();
+       return res.send(comment);
+    } catch (ex) {
+       return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+ });
 
 
 module.exports = router;
