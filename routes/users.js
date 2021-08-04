@@ -58,5 +58,17 @@ router.get('/', async (req, res) => {
     }
  });
 
+  ////////////////////////GET USERS BY ID ////////////////////////
+  router.get('/:id', async (req, res) => {
+    try {
+       const user = await User.findById(req.params.id);
+       if (!user)
+          return res.status(400).send(`The user with id "${req.params.id}" does not exist.`);
+       return res.send(user);
+    } catch (ex) {
+       return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+ });
+
 
 module.exports = router;
