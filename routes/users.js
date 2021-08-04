@@ -58,12 +58,36 @@ router.get('/', async (req, res) => {
     }
  });
 
-  ////////////////////////GET USERS BY ID ////////////////////////
-  router.get('/:id', async (req, res) => {
+ ////////////////////////GET USERS BY ID ////////////////////////
+ router.get('/:id', async (req, res) => {
     try {
        const user = await User.findById(req.params.id);
        if (!user)
           return res.status(400).send(`The user with id "${req.params.id}" does not exist.`);
+       return res.send(user);
+    } catch (ex) {
+       return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+ });
+
+
+  //////////////////////// POST NEW USER ////////////////////////
+ router.post('/', async (req, res) => {
+    try {
+       // VALIDATION REQUIRED
+       const { error } = validateUser(req.body);
+       if (error)
+          return res.status(400).send(error);
+ 
+       let user = await User.findOne({ email: req.body.email });
+       if (user) return res.status(400).send('User already registered.');
+ 
+       user = new User({
+          name: req.body.name,
+          password: req.body.password,
+          email: req.body.email,
+       });
+       await user.save();
        return res.send(user);
     } catch (ex) {
        return res.status(500).send(`Internal Server Error: ${ex}`);
