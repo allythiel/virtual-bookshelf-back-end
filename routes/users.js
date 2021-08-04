@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
  });
 
- 
+
  ////////////////////////GET COMMENTS BY BOOK ID ////////////////////////
  router.get('/:bookId', async (req, res) => {
     try {
@@ -43,6 +43,16 @@ router.get('/', async (req, res) => {
        });
        await comment.save();
        return res.send(comment);
+    } catch (ex) {
+       return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+ });
+
+ ////////////////////////GET ALL USERS ////////////////////////
+ router.get('/', async (req, res) => {
+    try {
+       const users = await User.find();
+       return res.send(users);
     } catch (ex) {
        return res.status(500).send(`Internal Server Error: ${ex}`);
     }
