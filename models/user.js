@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String, required: true, minlength: 5, maxLength: 100},
     password: { type: String, required: true, minLength: 5, maxLength: 20},
     email: { type: String, required: true, minLength: 5, maxLength: 50},
+    comments: {commentSchema}
 });
 
 ////////////////////////////////////////////////////////////////////////////
