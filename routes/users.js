@@ -29,9 +29,9 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
  router.post('/', async (req, res) => {
     try {
        // VALIDATION REQUIRED
-       const { error } = validateUser(req.body);
-       if (error)
-          return res.status(400).send(error);
+    //    const { error } = validateUser(req.body);
+    //    if (error)
+    //       return res.status(400).send(error);
  
        let user = await User.findOne({ email: req.body.email });
        if (user) return res.status(400).send('User already registered.');
@@ -42,6 +42,22 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
           email: req.body.email,
        });
        await user.save();
+       return res.send(user);
+    } catch (ex) {
+       return res.status(500).send(`Internal Server Error: ${ex}`);
+    }
+ });
+
+  //////////////////////// VALIDATE USER LOGIN ////////////////////////
+  router.post('/login', async (req, res) => {
+    try {
+        // const { error } = validateUser(req.body);
+        // if (error)
+        //    return res.status(400).send(error);
+ 
+       let user = await User.findOne({ email: req.body.email });
+       if (!user) return res.status(400).send('User does not exist.');
+ 
        return res.send(user);
     } catch (ex) {
        return res.status(500).send(`Internal Server Error: ${ex}`);
