@@ -40,6 +40,7 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
           name: req.body.name,
           password: req.body.password,
           email: req.body.email,
+          comments: [],
        });
        await user.save();
        return res.send(user);
