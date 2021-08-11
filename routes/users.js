@@ -50,7 +50,7 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
  });
 
   //////////////////////// VALIDATE USER LOGIN ////////////////////////
-  router.post('/login', async (req, res) => {
+  router.post('/', async (req, res) => {
     try {
         // const { error } = validateUser(req.body);
         // if (error)
