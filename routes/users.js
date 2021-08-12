@@ -29,9 +29,9 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
  router.post('/', async (req, res) => {
     try {
        // VALIDATION REQUIRED
-    //    const { error } = validateUser(req.body);
-    //    if (error)
-    //       return res.status(400).send(error);
+      //  const { error } = validateUser(req.body);
+      //  if (error)
+      //     return res.status(400).send(error);
  
        let user = await User.findOne({ email: req.body.email });
        if (user) return res.status(400).send('User already registered.');
@@ -50,11 +50,11 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
  });
 
   //////////////////////// VALIDATE USER LOGIN ////////////////////////
-  router.post('/', async (req, res) => {
+  router.post('/login', async (req, res) => {
     try {
-        // const { error } = validateUser(req.body);
-        // if (error)
-        //    return res.status(400).send(error);
+      //   const { error } = validateUser(req.body);
+      //   if (error)
+      //      return res.status(400).send(error);
  
        let user = await User.findOne({ email: req.body.email });
        if (!user) return res.status(400).send('User does not exist.');
