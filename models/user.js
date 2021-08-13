@@ -5,6 +5,7 @@ const Joi = require('joi');
 const commentSchema = new mongoose.Schema({
     text: { type: String, required: true, minLength: 5, maxLength: 1000},
     author: { type: String, required: true, minLength: 5, maxLength: 100},
+    book: { type: String, required: true, minLength: 5, maxLength: 100},
     dateAdded: { type: Date, default: Date.now },
 });
 
@@ -35,6 +36,7 @@ function validateComment(comment){
     const schema = Joi.object({
         text: Joi.string().min(5).max(1000).required(),
         author: Joi.string().min(5).max(100).required(),
+        book: Joi.string().min(5).max(100).required()
     });
     return schema.validate(comment);
 }

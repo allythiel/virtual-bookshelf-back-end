@@ -104,7 +104,7 @@ router.get('/:userId/:comments', async (req, res) => {
        const comment = new Comment({
           text: req.body.text,
           author: req.body.author,
-          bookId: req.body.bookId,
+          book: req.body.book,
        });
        await comment.save();
        return res.send(comment);
