@@ -113,5 +113,31 @@ router.get('/:userId/:comments', async (req, res) => {
     }
  });
 
+ ////////////////////////POST NEW BOOKSHELF ////////////////////////
+router.post('/:userId/:bookshelf', async (req, res) => {
+   try{
+      const bookshelf = new Bookshelf({
+         kind: req.body.kind,
+         book_id: req.body.book_id,
+         etag: req.body.etag,
+         selfLink: req.body.selfLink,
+         volumeInfo: {
+             title: req.body.title,
+             authors: req.body.authors,
+             description: req.body.description,
+             averageRating: req.body.averageRating,
+             ratingsCount: req.body.ratingsCount,
+             imageLinks: {
+                 smallThumbnail: req.body.smallThumbnail,
+                 thumbnail: req.body.thumbnail,
+             }
+         }
+      });
+      await bookshelf.save();
+      return res.send(bookshelf);
+   } catch (ex) {
+      return res.status(500).send(`Internal Server Error: ${ex}`);
+   }
+});
 
 module.exports = router;
