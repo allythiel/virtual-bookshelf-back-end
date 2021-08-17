@@ -75,8 +75,10 @@ function validateBookshelf(bookshelf){
             ratingsCount: Joi.number(),
             imageLinks: {
                 smallThumbnail: Joi.string(),
-                thumbnail: Joi.string(),
-    })
+                thumbnail: Joi.string()
+            }
+        }
+    });
     return schema.validate(bookshelf);
 }
 
@@ -87,5 +89,6 @@ module.exports = {
     Comment: Comment,
     Bookshelf: Bookshelf,
     validateUser: validateUser,
-    validateComment: validateComment
+    validateComment: validateComment,
+    validateBookshelf: validateBookshelf
 }
