@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {User, Comment, validateUser, validateComment } = require('../models/user');
+const {User, Comment, Bookshelf, validateUser, validateComment } = require('../models/user');
 
  ////////////////////////GET ALL USERS ////////////////////////
  router.get('/', async (req, res) => {
@@ -41,6 +41,7 @@ const {User, Comment, validateUser, validateComment } = require('../models/user'
           password: req.body.password,
           email: req.body.email,
           comments: [],
+          bookshelf: [],
        });
        await user.save();
        return res.send(user);
@@ -113,25 +114,18 @@ router.get('/:userId/:comments', async (req, res) => {
     }
  });
 
- ////////////////////////POST NEW BOOKSHELF ////////////////////////
-router.post('/:userId/:bookshelf', async (req, res) => {
+//  ////////////////////////POST NEW BOOKSHELF ////////////////////////
+router.post('/:userId/:comments/:bookshelves', async (req, res) => {
    try{
       const bookshelf = new Bookshelf({
          kind: req.body.kind,
-         book_id: req.body.book_id,
+         bookshelf_id: req.body.bookshelf_id,
          etag: req.body.etag,
          selfLink: req.body.selfLink,
-         volumeInfo: {
-             title: req.body.title,
-             authors: req.body.authors,
-             description: req.body.description,
-             averageRating: req.body.averageRating,
-             ratingsCount: req.body.ratingsCount,
-             imageLinks: {
-                 smallThumbnail: req.body.smallThumbnail,
-                 thumbnail: req.body.thumbnail,
-             }
-         }
+         volumeInfo: req.body.volumeInfo,
+         saleInfo: req.body.saleInfo,
+         accessInfo: req.body.accessInfo,
+         searchInfo: req.body.searchInfo,
       });
       await bookshelf.save();
       return res.send(bookshelf);

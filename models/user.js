@@ -9,31 +9,25 @@ const commentSchema = new mongoose.Schema({
     dateAdded: { type: Date, default: Date.now },
 });
 
+const bookshelfSchema = new mongoose.Schema({
+    kind: { type: String },
+    bookshelf_id: { type: String },
+    etag: { type: String },
+    selfLink: { type: String },
+    volumeInfo: {type: Object },
+    saleInfo: {type: Object },
+    accessInfo: {type: Object },
+    searchInfo: {type: Object },
+});
+
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true, minlength: 5, maxLength: 100},
     password: { type: String, required: true, minLength: 5, maxLength: 20},
     email: { type: String, required: true, minLength: 5, maxLength: 50},
-    comments: {commentSchema},
-    bookshelf: {bookshelfSchema}
+    comments: [commentSchema],
+    bookshelf: [bookshelfSchema],
 });
 
-const bookshelfSchema = new mongoose.Schema({
-    kind: { type: String },
-    book_id: { type: String },
-    etag: { type: String },
-    selfLink: { type: String },
-    volumeInfo: {
-        title: { type: String},
-        authors: [{ type: String}],
-        description: { type: String, minLength: 5, maxLength: 500},
-        averageRating: {type: Number},
-        ratingsCount: { type: Number },
-        imageLinks: {
-            smallThumbnail: { type: String},
-            thumbnail: {type: String},
-        }
-    }
-})
 
 
 ////////////////////////////////////////////////////////////////////////////
