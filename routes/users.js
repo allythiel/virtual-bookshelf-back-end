@@ -134,4 +134,15 @@ router.post('/:userId/:comments/:bookshelves', async (req, res) => {
    }
 });
 
+ ////////////////////////GET BOOKSHELF ////////////////////////
+ router.get('/:userId/:comments/:bookId/:bookshelves/', async (req, res) => {
+   try {
+      const bookshelf = await Bookshelf.find();
+      console.log(bookshelf);
+      return res.send(bookshelf);
+   } catch (ex) {
+      return res.status(500).send(`Internal Server Error: ${ex}`);
+   }
+});
+
 module.exports = router;
