@@ -10,14 +10,14 @@ const commentSchema = new mongoose.Schema({
 });
 
 const bookshelfSchema = new mongoose.Schema({
-    kind: { type: String },
-    bookshelf_id: { type: String },
-    etag: { type: String },
-    selfLink: { type: String },
-    volumeInfo: {type: Object },
-    saleInfo: {type: Object },
-    accessInfo: {type: Object },
-    searchInfo: {type: Object },
+    kind1: { type: String },
+    bookshelf_id1: { type: String },
+    etag1: { type: String },
+    selfLink1: { type: String },
+    volumeInfo1: {type: Object },
+    saleInfo1: {type: Object },
+    accessInfo1: {type: Object },
+    searchInfo1: {type: Object },
 });
 
 const userSchema = new mongoose.Schema({

@@ -118,14 +118,14 @@ router.get('/:userId/:comments', async (req, res) => {
 router.post('/:userId/:comments/:bookshelves', async (req, res) => {
    try{
       const bookshelf = new Bookshelf({
-         kind: req.body.kind,
-         bookshelf_id: req.body.bookshelf_id,
-         etag: req.body.etag,
-         selfLink: req.body.selfLink,
-         volumeInfo: req.body.volumeInfo,
-         saleInfo: req.body.saleInfo,
-         accessInfo: req.body.accessInfo,
-         searchInfo: req.body.searchInfo,
+         kind1: req.body.kind1,
+         bookshelf_id1: req.body.bookshelf_id1,
+         etag1: req.body.etag1,
+         selfLink1: req.body.selfLink1,
+         volumeInfo1: req.body.volumeInfo1,
+         saleInfo1: req.body.saleInfo1,
+         accessInfo1: req.body.accessInfo1,
+         searchInfo1: req.body.searchInfo1,
       });
       await bookshelf.save();
       return res.send(bookshelf);
