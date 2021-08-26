@@ -28,12 +28,23 @@ const userSchema = new mongoose.Schema({
     bookshelf: [bookshelfSchema],
 });
 
+const bookSchema = new mongoose.Schema({
+    kind2: { type: String },
+    bookshelf_id2: { type: String },
+    etag2: { type: String },
+    selfLink2: { type: String },
+    volumeInfo2: {type: Object },
+    saleInfo2: {type: Object },
+    accessInfo2: {type: Object },
+    searchInfo2: {type: Object },
+})
 
 
 ////////////////////////////////////////////////////////////////////////////
 const Comment = mongoose.model("Comment", commentSchema);
 const User = mongoose.model("User", userSchema);
 const Bookshelf = mongoose.model("Bookshelf", bookshelfSchema);
+const Book = mongoose.model("Book", bookSchema);
 
 /////////////////////////VALIDATION//////////////////////////////////////////
 
