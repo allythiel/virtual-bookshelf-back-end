@@ -66,6 +66,22 @@ function validateComment(comment){
     return schema.validate(comment);
 }
 
+function validateBookshelf(bookshelf){
+    const schema = Joi.object({
+        kind1: Joi.string(),
+        bookshelf_id1: Joi.string(),
+        etag1: Joi.string(),
+        selfLink1: Joi.string(),
+        volumeInfo1: Joi.object(),
+        saleInfo1: Joi.object(),
+        accessInfo1: Joi.object(),
+        searchInfo1: Joi.object(),
+    });
+    return schema.validate(bookshelf)
+}
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -76,4 +92,5 @@ module.exports = {
     Book: Book,
     validateUser: validateUser,
     validateComment: validateComment,
+    validateBookshelf: validateBookshelf,
 }
