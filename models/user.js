@@ -80,6 +80,20 @@ function validateBookshelf(bookshelf){
     return schema.validate(bookshelf)
 }
 
+function validateBook(book){
+    const schema = Joi.object({
+        kind2: Joi.string(),
+        bookshelf_id2: Joi.string(),
+        etag2: Joi.string(),
+        selfLink2: Joi.string(),
+        volumeInfo2: Joi.object(),
+        saleInfo2: Joi.object(),
+        accessInfo2: Joi.object(),
+        searchInfo2: Joi.object(),
+    });
+    return schema.validate(book)
+}
+
 
 
 
@@ -93,4 +107,5 @@ module.exports = {
     validateUser: validateUser,
     validateComment: validateComment,
     validateBookshelf: validateBookshelf,
+    validateBook: validateBook,
 }
