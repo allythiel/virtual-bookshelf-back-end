@@ -66,26 +66,6 @@ function validateComment(comment){
     return schema.validate(comment);
 }
 
-function validateBookshelf(bookshelf){
-    const schema = Joi.object({
-        kind: Joi.string(),
-        book_id: Joi.string(),
-        etag: Joi.string(),
-        selfLink: Joi.string(),
-        volumeInfo: {
-            title: Joi.string(),
-            authors: [Joi.string()],
-            description: Joi.string().min(5).max(500),
-            averageRating: Joi.number(),
-            ratingsCount: Joi.number(),
-            imageLinks: {
-                smallThumbnail: Joi.string(),
-                thumbnail: Joi.string()
-            }
-        }
-    });
-    return schema.validate(bookshelf);
-}
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -93,7 +73,7 @@ module.exports = {
     User: User,
     Comment: Comment,
     Bookshelf: Bookshelf,
+    Book: Book,
     validateUser: validateUser,
     validateComment: validateComment,
-    validateBookshelf: validateBookshelf
 }
