@@ -68,7 +68,7 @@ const {User, Comment, Bookshelf, validateUser, validateComment } = require('../m
 
 
 
-////////////////////////GET ALL COMMENTS ////////////////////////
+////////////////////////GET COMMENTS BY USER ID////////////////////////
 router.get('/:userId/:comments', async (req, res) => {
     try {
        const comments = await Comment.find();
